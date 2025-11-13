@@ -1,16 +1,22 @@
+// task_4/js/subjects/Cpp.ts
+/// <reference path="Teacher.ts" />
+/// <reference path="Subject.ts" />
+
 namespace Subjects {
-  // Declaration merging: augment Teacher interface
+  // Use declaration merging to add to the Teacher interface
   export interface Teacher {
-    experienceTeachingC?: number;
+    experienceTeachingC?: number; // Optional attribute
   }
 
+  // Create Cpp class extending Subject
   export class Cpp extends Subject {
     getRequirements(): string {
       return 'Here is the list of requirements for Cpp';
     }
 
     getAvailableTeacher(): string {
-      if (this.teacher && this.teacher.experienceTeachingC && this.teacher.experienceTeachingC > 0) {
+      // Check if the teacher has experience in C
+      if (this.teacher?.experienceTeachingC > 0) {
         return `Available Teacher: ${this.teacher.firstName}`;
       }
       return 'No available teacher';

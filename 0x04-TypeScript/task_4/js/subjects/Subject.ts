@@ -1,8 +1,13 @@
-namespace Subjects {
-  export class Subject {
-    teacher: Teacher | null = null;
+// task_4/js/subjects/Subject.ts
+/// <reference path="Teacher.ts" />
 
-    setTeacher(teacher: Teacher) {
+namespace Subjects {
+  // Define Subject class
+  export class Subject {
+    teacher: Teacher;
+
+    // Setter method for teacher
+    setTeacher(teacher: Teacher): void {
       this.teacher = teacher;
     }
   }

@@ -1,22 +1,22 @@
+// task_4/js/subjects/React.ts
+/// <reference path="Teacher.ts" />
+/// <reference path="Subject.ts" />
+
 namespace Subjects {
-  // Declaration merging: augment Teacher interface
+  // Use declaration merging to add to the Teacher interface
   export interface Teacher {
-    experienceTeachingReact?: number;
+    experienceTeachingReact?: number; // Optional attribute
   }
 
-  export class React {
-    teacher: Teacher | null = null;
-
-    setTeacher(teacher: Teacher) {
-      this.teacher = teacher;
-    }
-
+  // Create React class extending Subject
+  export class React extends Subject {
     getRequirements(): string {
       return 'Here is the list of requirements for React';
     }
 
     getAvailableTeacher(): string {
-      if (this.teacher && this.teacher.experienceTeachingReact && this.teacher.experienceTeachingReact > 0) {
+      // Check if the teacher has experience in React
+      if (this.teacher?.experienceTeachingReact > 0) {
         return `Available Teacher: ${this.teacher.firstName}`;
       }
       return 'No available teacher';
