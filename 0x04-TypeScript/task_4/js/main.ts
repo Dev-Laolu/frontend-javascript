@@ -35,7 +35,7 @@ console.log(react.getRequirements());
 console.log(react.getAvailableTeacher());
 
 //fix
-// Define interfaces
+// Define the Teacher interface
 export interface Teacher {
   firstName: string;
   lastName: string;
@@ -44,63 +44,63 @@ export interface Teacher {
   experienceTeachingReact?: number;
 }
 
-export interface Subjects {
+// Base class for Subjects
+export class Subjects {
   teacher?: Teacher;
-  getRequirements(): string;
-  getAvailableTeacher(): string;
+
+  getRequirements(): string {
+    return 'No requirements';
+  }
+
+  getAvailableTeacher(): string {
+    return this.teacher
+      ? `Available teacher: ${this.teacher.firstName}`
+      : 'No teacher available';
+  }
 }
 
-// Create constants for subjects
-export const cpp: Subjects = {
-  teacher: undefined,
+// Subclasses for each subject
+export class Cpp extends Subjects {
   getRequirements(): string {
     return 'Here is the list of requirements for C++';
-  },
-  getAvailableTeacher(): string {
-    return this.teacher ? `Available teacher: ${this.teacher.firstName}` : 'No teacher available';
   }
-};
+}
 
-export const java: Subjects = {
-  teacher: undefined,
+export class Java extends Subjects {
   getRequirements(): string {
     return 'Here is the list of requirements for Java';
-  },
-  getAvailableTeacher(): string {
-    return this.teacher ? `Available teacher: ${this.teacher.firstName}` : 'No teacher available';
   }
-};
+}
 
-export const react: Subjects = {
-  teacher: undefined,
+export class React extends Subjects {
   getRequirements(): string {
     return 'Here is the list of requirements for React';
-  },
-  getAvailableTeacher(): string {
-    return this.teacher ? `Available teacher: ${this.teacher.firstName}` : 'No teacher available';
   }
-};
+}
 
-// Create a teacher object
+// Create a teacher
 export const cTeacher: Teacher = {
   firstName: 'Guillaume',
   lastName: 'Salva',
   experienceTeachingC: 10
 };
 
-// C++ subject
+// Instantiate each subject
+export const cpp = new Cpp();
+export const java = new Java();
+export const react = new React();
+
+// Assign teacher and log outputs
 console.log('C++');
 cpp.teacher = cTeacher;
 console.log(cpp.getRequirements());
 console.log(cpp.getAvailableTeacher());
 
-// Java subject
 console.log('Java');
 java.teacher = cTeacher;
 console.log(java.getRequirements());
 console.log(java.getAvailableTeacher());
 
-// React subject
 console.log('React');
 react.teacher = cTeacher;
 console.log(react.getRequirements());
